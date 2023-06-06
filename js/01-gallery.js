@@ -23,7 +23,7 @@ function createImageMark(items) {
 galleryList.addEventListener('click', onClick)
 
 function onClick(evt) {
-    const isImageSwatchEl = evt.target.classList.contains('gallery__image');
+    const isImageSwatchEl = evt.target.nodeName === "IMG" ;
     
     if (!isImageSwatchEl) {
         return
@@ -35,26 +35,51 @@ function onClick(evt) {
 
 }
 
+// let instance;
+
+// function openModal(imageURL) {
+//    instance = basicLightbox.create(`
+//     <div class="modal__content">
+//       <img src="${imageURL}" alt="" />
+//     </div>
+//   `);
+
+//     instance.show();
+//     window.addEventListener("keydown", closeModalOnEsc);
+// }
+
+// function closeModalOnEsc(event) {
+//   if (event.code === "Escape") {
+//     instance.close();
+//     window.removeEventListener("keydown", closeModalOnEsc);
+//   }
+// }
+
+
 let instance;
 
 function openModal(imageURL) {
-   instance = basicLightbox.create(`
+  instance = basicLightbox.create(
+    `
     <div class="modal__content">
       <img src="${imageURL}" alt="" />
     </div>
-  `);
+  `,
+    {
+      onShow: () => {
+        window.addEventListener('keydown', closeModalOnEsc);
+      },
+      onClose: () => {
+        window.removeEventListener('keydown', closeModalOnEsc);
+      },
+    }
+  );
 
-    instance.show();
-    window.addEventListener("keydown", closeModalOnEsc);
+  instance.show();
 }
 
 function closeModalOnEsc(event) {
-  if (event.code === "Escape") {
+  if (event.code === 'Escape') {
     instance.close();
-    window.removeEventListener("keydown", closeModalOnEsc);
   }
 }
-
-
-
-
