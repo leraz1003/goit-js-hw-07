@@ -11,7 +11,6 @@ const boxContainer = document.getElementById('boxes');
 
 
 createBtn.addEventListener('click', () => { 
-  console.dir(input.value)
   if (input.value >= 1 && input.value <= 100 ) {
     createBoxes(input.value);
     input.value='';
