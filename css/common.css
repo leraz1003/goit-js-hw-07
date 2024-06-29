@@ -219,4 +219,7 @@ h2 + ul li:not(:last-child) {
   width: 486px;
 
   background-color: #f6f6fe;
+  display: flex;
+  gap: 44px;
+  flex-wrap: wrap;
 }
