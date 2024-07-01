@@ -19,15 +19,16 @@ createBtn.addEventListener('click', () => {
 
 function createBoxes(amount) {
   boxContainer.innerHTML = '';
- 
-  let width = 20;
-  let height = 20;
+  let divsToAdd = '';
+  let width = 30;
+  let height = 30;
 
   for (let i = 1; i <= amount; i++){
+    divsToAdd +=  `<div style="width:${width}px; height:${height}px; background-color:${getRandomHexColor()};"></div>`
     width += 10;
     height += 10;
-    boxContainer.insertAdjacentHTML('beforeend', `<div style="width:${width}px; height:${height}px; background-color:${getRandomHexColor()};"></div>`);
   }
+  boxContainer.innerHTML = divsToAdd;
 }
 
 destroyBtn.addEventListener('click', () => {
